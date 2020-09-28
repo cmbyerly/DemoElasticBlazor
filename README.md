@@ -10,7 +10,7 @@ This is for the YouTube series I am putting together for using Elasticsearch wit
 
 # Second Video - Enabling with Serilog on Server
 
-You will need to install the following Nuget Libraries to DemoElasticBlazor.Server.csproj.  The initial project will be in the "Initial" directoty.  The my fully configured one will be in the "Logging" Directory for your reference.
+You will need to install the following Nuget Libraries to DemoElasticBlazor.Server.csproj.  The initial project will be in the "Initial" directory.  The my fully configured one will be in the "Logging" Directory for your reference.
 
 - Elasticsearch.Net
 - NEST
