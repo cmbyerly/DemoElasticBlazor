@@ -1,0 +1,79 @@
+﻿@page "/additem"
+
+@using Radzen
+@using DemoElasticBlazor.Shared
+
+@inject HttpClient Http
+@inject NotificationService notificationService
+
+<h3>Add Item</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col">
+                <RadzenTemplateForm TItem="ItemDto" Data="@model" Submit="@OnSubmit" InvalidSubmit="@OnInvalidSubmit">
+                    <RadzenFieldset Text="Personal information">
+                        <div class="row" style="margin-bottom: 48px">
+                            <div class="col-md-4 align-right">
+                                <RadzenLabel Text="Item Name" />
+                            </div>
+                            <div class="col">
+                                <RadzenTextBox style="display: block" Name="ItemName" @bind-Value="model.ItemName" />
+                                <RadzenRequiredValidator Component="ItemName" Text="Item name is required" Popup="true" Style="position: absolute" />
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 48px">
+                            <div class="col-md-4">
+                                <RadzenLabel Text="Item Description" />
+                            </div>
+                            <div class="col">
+                                <RadzenTextBox style="display: block" Name="ItemDescription" @bind-Value="model.ItemDescription" />
+                                <RadzenRequiredValidator Component="ItemDescription" Text="Item description is required" Popup="true" Style="position: absolute" />
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 48px">
+                            <div class="col-md-4">
+                                <RadzenLabel Text="Item Quantity" />
+                            </div>
+                            <div class="col">
+                                <RadzenNumeric TValue="int" style="display: block" Name="ItemQuanitity" @bind-Value="model.ItemQuanitity" />
+                                <RadzenNumericRangeValidator Component="ItemQuanitity" Min="1" Max="1000" Text="Quantity should be between 1 and 10" Popup="true" Style="position: absolute" />
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 48px">
+                            <div class="col-md-4">
+                                <RadzenLabel Text="Item Price" />
+                            </div>
+                            <div class="col">
+                                <RadzenNumeric TValue="double" Placeholder="0.0" Step="0.1" style="display: block" Name="ItemPrice" @bind-Value="model.ItemPrice" />
+                                <RadzenRequiredValidator Component="ItemPrice" Text="Item price is required" Popup="true" Style="position: absolute" />
+                            </div>
+                        </div>
+                        <RadzenButton ButtonType="ButtonType.Submit" Text="Submit"></RadzenButton>
+                    </RadzenFieldset>
+                </RadzenTemplateForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    ItemDto model = new ItemDto();
+
+    async Task OnSubmit(ItemDto model)
+    {
+        HttpContent httpContent = JsonContent.Create(model);
+        await Http.PostAsync("Items", httpContent);
+    }
+
+    void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
+    {
+        NotificationMessage messase = new NotificationMessage() { Severity = NotificationSeverity.Error, Summary = "Invalid items on form", Detail = "Error Detail", Duration = 4000 };
+
+        notificationService.Notify(messase);
+    }
+}

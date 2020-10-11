@@ -19,3 +19,7 @@ You will need to install the following Nuget Libraries to DemoElasticBlazor.Serv
 - Serilog.AspNetCore
 - Serilog.Extensions.Logging
 - Serilog.Sinks.Elasticsearch
+
+# Third Video - Writing to An Index Directly
+
+In this video we discussed writing directly to an index.  The project for it is WriteToIndex folder.
