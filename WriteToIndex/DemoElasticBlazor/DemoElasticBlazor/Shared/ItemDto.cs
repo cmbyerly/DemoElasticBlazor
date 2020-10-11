@@ -1,5 +1,8 @@
 ﻿namespace DemoElasticBlazor.Shared
 {
+    /// <summary>
+    /// Item DTO
+    /// </summary>
     public class ItemDto
     {
         /// <summary>

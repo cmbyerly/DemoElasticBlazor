@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace DemoElasticBlazor.Client
 {
+    /// <summary>
+    /// The Program
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);

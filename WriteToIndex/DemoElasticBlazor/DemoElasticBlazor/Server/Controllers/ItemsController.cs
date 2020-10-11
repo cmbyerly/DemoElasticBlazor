@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace DemoElasticBlazor.Server.Controllers
 {
+    /// <summary>
+    /// Items controller.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [ApiController]
     [Route("[controller]")]
     public class ItemsController : ControllerBase
@@ -26,6 +30,7 @@ namespace DemoElasticBlazor.Server.Controllers
         /// Initializes a new instance of the <see cref="ItemsController" /> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
+        /// <param name="configuration">The configuration.</param>
         public ItemsController(ILogger<ItemsController> logger, IConfiguration configuration)
         {
             this.logger = logger;
@@ -60,5 +65,5 @@ namespace DemoElasticBlazor.Server.Controllers
                 logger.LogInformation(indexResult.DebugInformation);
             }
         }
-     }
+    }
 }
